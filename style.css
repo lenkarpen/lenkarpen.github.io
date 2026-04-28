@@ -530,6 +530,10 @@ img { display: block; max-width: 100%; }
   max-width: 640px;
 }
 
+.certs-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .cert-card {
   background: var(--white);
   border-radius: var(--radius-lg);
