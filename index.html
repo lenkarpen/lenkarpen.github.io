@@ -37,10 +37,10 @@
         <span class="eyebrow">Technical Support Engineer &middot; Dublin, Ireland</span>
         <h1 class="hero-name">Olena<br>Karpenko</h1>
         <p class="hero-tagline">
-          Technical support engineer with a focus on automation, identity management, and cross-platform troubleshooting &mdash; turning manual workflows into reliable, documented processes.
+          Hands-on IT support across desktop, field, and application tiers &mdash; I troubleshoot what&rsquo;s in front of me, dig into root causes, and document what I find so the next person doesn&rsquo;t start from zero.
         </p>
         <div class="hero-badges">
-          <span class="badge badge-outline">Python Certified</span>
+          <span class="badge badge-outline">On-site &amp; Remote</span>
           <span class="badge badge-outline">2 yrs IT Support</span>
           <span class="badge badge-outline">4 yrs UX Design</span>
         </div>
@@ -159,23 +159,15 @@
         </div>
 
         <div class="skill-card">
-          <h3 class="skill-category">Scripting &amp; Dev</h3>
+          <h3 class="skill-category">Field &amp; Hardware Support</h3>
           <div class="tags">
-            <span class="tag tag-purple">Python · PCAP</span>
-            <span class="tag">PowerShell</span>
-            <span class="tag">HTML / CSS</span>
-            <span class="tag">Excel / VBA</span>
-            <span class="tag">Regex</span>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h3 class="skill-category">Support Specialisms</h3>
-          <div class="tags">
+            <span class="tag">Laptop Imaging &amp; Refresh</span>
+            <span class="tag">Asset Management</span>
+            <span class="tag">Logitech AV</span>
+            <span class="tag">AV Setup &amp; Maintenance</span>
+            <span class="tag">Hardware Troubleshooting</span>
             <span class="tag">Technical Escalations</span>
             <span class="tag">Root Cause Analysis</span>
-            <span class="tag">Cross-platform Troubleshooting</span>
-            <span class="tag">Customer Empathy</span>
           </div>
         </div>
 
@@ -186,6 +178,17 @@
             <span class="tag">Process Documentation</span>
             <span class="tag">Technical Writing</span>
             <span class="tag">Confluence Specs</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-category">Scripting &amp; Dev</h3>
+          <div class="tags">
+            <span class="tag tag-purple">Python · PCAP</span>
+            <span class="tag">PowerShell</span>
+            <span class="tag">HTML / CSS</span>
+            <span class="tag">Excel / VBA</span>
+            <span class="tag">Regex</span>
           </div>
         </div>
 
@@ -212,10 +215,11 @@
               <span class="job-period">2023 &ndash; Present</span>
             </div>
             <ul class="job-bullets">
-              <li>Progressed from in-person desktop support to global remote support (phone, chat, email) for employees across EMEA, APAC, NAMAR, and LATAM.</li>
+              <li>Started in on-site desktop support in LinkedIn&rsquo;s Dublin office &mdash; laptop imaging and refresh, hardware troubleshooting, Logitech AV setup and maintenance, asset management, and real-time end-user support.</li>
+              <li>Progressed to global remote support (phone, chat, email) for employees across EMEA, APAC, NAMAR, and LATAM &mdash; handling escalations and complex cross-platform issues.</li>
               <li>Now focused on backend VDI administration &mdash; managing onboarding workflows, AD pool provisioning, and identity verification via Omnissa Horizon.</li>
-              <li>Built a Python script to automate extraction of user data from HTML-formatted ServiceNow exports, reducing manual reconciliation time significantly.</li>
               <li>Automates bulk Active Directory group assignments using PowerShell; used as a standard step in the weekly onboarding workflow.</li>
+              <li>Built a Python script to automate extraction of user data from HTML-formatted ServiceNow exports, reducing manual reconciliation time significantly.</li>
               <li>Authors internal Confluence knowledge base articles documenting complex operational processes for team-wide use.</li>
               <li>Tools: ServiceNow &middot; Jira &middot; Confluence &middot; Omnissa Horizon &middot; Active Directory &middot; M365 Admin &middot; PowerShell &middot; Python</li>
             </ul>
@@ -323,8 +327,109 @@
 
       <div class="portfolio-wrap">
 
+        <!-- ── Featured Case Study: End-to-End Onboarding Pipeline ── -->
+        <div class="project-card project-card-featured" id="proj-case-study">
+          <div class="project-header">
+            <div>
+              <span class="project-type project-type-code">Featured case study &middot; Operations &middot; Automation</span>
+              <h3 class="project-title">End-to-End VDI Onboarding Pipeline</h3>
+              <p class="project-tagline">From three disconnected systems and 2&nbsp;hours of daily Excel work to a single 10-minute reproducible run with anomaly detection &mdash; now operated by a teammate via SOP.</p>
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">pandas</span>
+              <span class="tag">BeautifulSoup</span>
+              <span class="tag">PowerShell</span>
+              <span class="tag">Active Directory</span>
+              <span class="tag">SOP</span>
+            </div>
+          </div>
+
+          <div class="case-stats">
+            <div class="case-stat">
+              <span class="case-stat-num">~250</span>
+              <span class="case-stat-label">workers onboarded / month</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">2&nbsp;h &rarr; &lt;10&nbsp;min</span>
+              <span class="case-stat-label">daily processing time</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">1&nbsp;year</span>
+              <span class="case-stat-label">history in one tracker</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">SOP-driven</span>
+              <span class="case-stat-label">operated by a teammate</span>
+            </div>
+          </div>
+
+          <p class="project-problem">
+            <strong>Problem:</strong> Onboarding contractor VDI access required reconciling data across three systems &mdash; an ITSM ticket export (metadata buried in HTML cells), an identity-management warehouse, and a year-long historical tracker. The manual Excel reconciliation took up to two hours every day; missed AD group assignments re-opened as analyst tickets downstream.
+          </p>
+
+          <p class="project-solution">
+            <strong>Solution &mdash; a four-stage pipeline:</strong>
+          </p>
+          <ol class="case-steps">
+            <li><strong>Parse</strong> &mdash; a Python script extracts ~10 structured fields per worker from the ITSM export&rsquo;s HTML cells (name, manager, region, access pool, start date, rehire flag, contact email).</li>
+            <li><strong>Reconcile</strong> &mdash; cross-references parsed records against the identity-management export to attach assigned usernames, with name normalisation handling casing, middle initials, and preferred-name variants.</li>
+            <li><strong>Anomaly detection</strong> &mdash; checks each (pool, region) combination against the rolling 12-month history. Combinations seen in the past 6 months auto-populate the correct security group; unseen combinations are flagged for manual review (most likely a new pool, or one that&rsquo;s been retired).</li>
+            <li><strong>Provision &amp; verify</strong> &mdash; PowerShell + ActiveDirectory module bulk-adds users to their security groups, then immediately re-reads membership to surface any mismatches before the batch closes.</li>
+          </ol>
+
+          <details class="code-block">
+            <summary>View anomaly-detection logic <span class="summary-hint">(pool history lookup)</span></summary>
+<pre><code class="language-python">def flag_new_pool_combinations(records, history, window_days=180):
+    """For each record, check whether its (pool, region) combination
+    has been used in the rolling history window.
+
+      • Seen recently     -> auto-populate the historical security group.
+      • Not seen recently -> flag for manual review (new or retired pool).
+    """
+    cutoff = datetime.now() - timedelta(days=window_days)
+    history["seen_at"] = pd.to_datetime(history["seen_at"])
+    recent = history[history["seen_at"] >= cutoff]
+
+    # Lookup: (pool, region) -> most recent security group seen in window
+    lookup = (
+        recent.sort_values("seen_at", ascending=False)
+              .drop_duplicates(subset=["pool_name", "region"])
+              .set_index(["pool_name", "region"])["security_group"]
+              .to_dict()
+    )
+
+    def resolve(row):
+        return lookup.get((row["pool_name"], row["region"]))
+
+    records["security_group"]      = records.apply(resolve, axis=1)
+    records["needs_manual_review"] = records["security_group"].isna()
+    return records
+</code></pre>
+          </details>
+
+          <div class="case-outcomes">
+            <h4 class="case-section-title">Outcomes</h4>
+            <ul>
+              <li>Daily processing reduced from ~2&nbsp;hours to under 10&nbsp;minutes, including AD remote-desktop launch and verification checks.</li>
+              <li>One year of onboarding history consolidated into a single searchable tracker.</li>
+              <li>Group-assignment errors caught at the source rather than as downstream re-opened tickets.</li>
+              <li>Now run by a teammate following the SOP &mdash; the automation belongs to the team, not just me.</li>
+            </ul>
+          </div>
+
+          <p class="case-footer">
+            <strong>Components below:</strong>
+            <a href="#proj-parser">Ticket Parser</a>
+            &nbsp;&middot;&nbsp;
+            <a href="#proj-powershell">PowerShell Provisioning</a>
+            &nbsp;&middot;&nbsp;
+            <a href="#proj-kb-vdi">VDI Onboarding KB</a>
+          </p>
+        </div>
+
         <!-- ── Project 1: Python Parser ── -->
-        <div class="project-card">
+        <div class="project-card" id="proj-parser">
           <div class="project-header">
             <div>
               <span class="project-type project-type-code">Python &middot; Automation</span>
@@ -341,93 +446,75 @@
           </div>
 
           <p class="project-problem">
-            <strong>Problem:</strong> ServiceNow ticket exports store all user information &mdash; full name, VDI pool assignment, login ID &mdash; in a single HTML-formatted column inside an Excel file. Extracting and reconciling this data manually when processing batches of new-hire tickets was slow and error-prone.
+            <strong>Problem:</strong> ServiceNow ticket exports store ~10 fields per worker &mdash; legal name, manager, region, VDI pool, start date, rehire flag, contact email &mdash; inside a single HTML-formatted cell. Manual extraction across daily batches was slow and error-prone.
           </p>
           <p class="project-solution">
-            <strong>Solution:</strong> A Python CLI tool that reads the Excel export, parses the HTML with BeautifulSoup, and outputs a clean CSV with structured columns ready to cross-reference against Active Directory for pool provisioning. Accepts the input file, optional output path, and configurable column name as arguments.
+            <strong>Solution:</strong> The parser stage of the onboarding pipeline. BeautifulSoup strips the HTML, a single regex table maps friendly field names to their patterns, and one normaliser handles preferred-name variants and middle initials so the parsed records join cleanly against the identity-management export downstream.
           </p>
 
           <details class="code-block">
-            <summary>View source <span class="summary-hint">(snow_parser.py)</span></summary>
-<pre><code class="language-python">#!/usr/bin/env python3
-"""
-ServiceNow Ticket Parser
-Extracts full name, VDI pool, and username from HTML-formatted
-columns in ServiceNow Excel exports.
-
-Usage:
-    python snow_parser.py tickets.xlsx
-    python snow_parser.py tickets.xlsx -o parsed.csv -c caller_info
-"""
-
-import sys, re, argparse
-from pathlib import Path
-
-import pandas as pd
-from bs4 import BeautifulSoup
+            <summary>View source <span class="summary-hint">(snow_parser.py &mdash; Stage 1)</span></summary>
+<pre><code class="language-python">FIELD_PATTERNS = {
+    "first_name":    r"(legal[\s_-]?first[\s_-]?name|first[\s_-]?name)",
+    "last_name":     r"(legal[\s_-]?last[\s_-]?name|last[\s_-]?name)",
+    "manager":       r"(people[\s_-]?manager|manager[\s_-]?name|manager)",
+    "region":        r"(geographic[\s_-]?region|region)",
+    "pool_name":     r"(pool[\s_-]?name|vdi[\s_-]?profile)",
+    "start_date":    r"(request[\s_-]?start[\s_-]?date|start[\s_-]?date)",
+    "rehire":        r"(ever[\s_-]?worked|previous[\s_-]?employee|rehire)",
+    "contact_email": r"(personal[\s_-]?email|contact[\s_-]?email)",
+}
 
 
-def parse_user_info(raw: str) -> dict:
-    """Parse one HTML-formatted cell from a ServiceNow export column."""
-    fields = {"full_name": None, "pool_name": None, "username": None}
+def parse_ticket_html(raw: str) -> dict:
+    """Extract structured fields from one ticket's HTML metadata cell."""
+    record = {k: None for k in FIELD_PATTERNS}
     if not raw or isinstance(raw, float):
-        return fields
+        return record
 
     text = BeautifulSoup(str(raw), "html.parser").get_text(separator="\n")
 
     for line in text.splitlines():
         line = line.strip()
-        if not line:
+        if not line or ":" not in line:
             continue
-        if re.search(r"(full[\s_-]?name|display[\s_-]?name)", line, re.I):
-            m = re.search(r":\s*(.+)", line)
-            if m: fields["full_name"] = m.group(1).strip()
-        elif re.search(r"(pool|desktop[\s_-]?pool|vdi[\s_-]?pool)", line, re.I):
-            m = re.search(r":\s*(.+)", line)
-            if m: fields["pool_name"] = m.group(1).strip()
-        elif re.search(r"(user[\s_-]?name|login[\s_-]?id|sam)", line, re.I):
-            m = re.search(r":\s*(\S+)", line)
-            if m: fields["username"] = m.group(1).strip()
+        for field, pattern in FIELD_PATTERNS.items():
+            if record[field] is None and re.search(pattern, line, re.I):
+                m = re.search(r":\s*(.+)", line)
+                if m:
+                    record[field] = m.group(1).strip()
+                break
 
-    return fields
+    if record["first_name"] and record["last_name"]:
+        record["full_name"] = f"{record['first_name']} {record['last_name']}"
 
+    if isinstance(record["rehire"], str):
+        record["rehire"] = record["rehire"].lower().startswith(("yes", "true", "y"))
 
-def process_export(input_path, output_path=None, column="user_info"):
-    src = Path(input_path)
-    if not src.exists():
-        sys.exit(f"File not found: {src}")
-
-    df = pd.read_excel(src)
-    if column not in df.columns:
-        sys.exit(f"Column '{column}' not found.\nAvailable: {list(df.columns)}")
-
-    parsed = df[column].apply(parse_user_info)
-    df["full_name"] = [r["full_name"] for r in parsed]
-    df["pool_name"] = [r["pool_name"] for r in parsed]
-    df["username"]  = [r["username"]  for r in parsed]
-
-    missing = df["full_name"].isna().sum()
-    dest = Path(output_path) if output_path else src.with_name(f"{src.stem}_parsed.csv")
-    df[["full_name", "pool_name", "username"]].to_csv(dest, index=False)
-
-    print(f"Parsed {len(df) - missing}/{len(df)} rows  ->  {dest}")
-    if missing:
-        print(f"Warning: {missing} rows could not be parsed.")
+    return record
 
 
-if __name__ == "__main__":
-    ap = argparse.ArgumentParser()
-    ap.add_argument("input")
-    ap.add_argument("-o", "--output")
-    ap.add_argument("-c", "--column", default="user_info")
-    args = ap.parse_args()
-    process_export(args.input, args.output, args.column)
+def normalise_name(name: str) -> str:
+    """'John A. Smith' and 'john   smith' both -> 'john smith'."""
+    if not name:
+        return ""
+    name = re.sub(r"\s+\w\.\s+", " ", name)
+    return re.sub(r"\s+", " ", name.strip().lower())
+
+
+def attach_usernames(tickets, identity):
+    """Join parsed tickets to the identity-management export on normalised name."""
+    tickets["_key"] = tickets["full_name"].apply(normalise_name)
+    identity["_key"] = identity["full_name"].apply(normalise_name)
+    return tickets.merge(
+        identity[["_key", "username"]], on="_key", how="left"
+    ).drop(columns="_key")
 </code></pre>
           </details>
         </div>
 
         <!-- ── Project 2: PowerShell AD Provisioning ── -->
-        <div class="project-card">
+        <div class="project-card" id="proj-powershell">
           <div class="project-header">
             <div>
               <span class="project-type project-type-infra">PowerShell &middot; Active Directory</span>
@@ -484,7 +571,7 @@ for ($i = 0; $i -lt $users.Count; $i++) {
         </div>
 
         <!-- ── Project 3: KB Article ── -->
-        <div class="project-card">
+        <div class="project-card" id="proj-kb-vdi">
           <div class="project-header">
             <div>
               <span class="project-type project-type-docs">Technical Writing &middot; KB Article</span>
@@ -575,6 +662,85 @@ for ($i = 0; $i -lt $users.Count; $i++) {
           </details>
         </div>
 
+        <!-- ── Project 4: AV & Field Support ── -->
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <span class="project-type project-type-docs">Field Support &middot; AV</span>
+              <h3 class="project-title">Meeting Room AV &amp; Laptop Refresh Guide</h3>
+            </div>
+            <div class="tags">
+              <span class="tag">Logitech AV</span>
+              <span class="tag">Laptop Imaging</span>
+              <span class="tag">Asset Management</span>
+              <span class="tag">Hardware Troubleshooting</span>
+              <span class="tag">ServiceNow</span>
+            </div>
+          </div>
+
+          <p class="project-problem">
+            <strong>Context:</strong> Field support documentation covering two high-frequency on-site tasks: meeting room AV troubleshooting (Logitech Rally / MS Teams Rooms setups) and the laptop imaging and refresh workflow used when deploying or recycling devices for end users.
+          </p>
+
+          <details class="code-block kb-article-block">
+            <summary>Read article</summary>
+            <div class="kb-article">
+
+              <div class="kb-meta">
+                <span>Author: Olena Karpenko</span>
+                <span>Last updated: 2025</span>
+                <span>Category: Field Support &middot; AV &middot; Hardware</span>
+              </div>
+
+              <h3>Part 1 &mdash; Meeting Room AV Troubleshooting</h3>
+              <p>Covers Logitech Rally Bar setups connected via MS Teams Rooms in the Dublin office.</p>
+
+              <h3>Common Issues &amp; Resolutions</h3>
+              <div class="kb-step">
+                <ol>
+                  <li><strong>Camera not detected in Teams</strong> &mdash; unplug and replug USB-C hub, wait 15 s for device re-enumeration. If it persists, restart the Teams Rooms console from the admin panel.</li>
+                  <li><strong>No audio / mic not picking up</strong> &mdash; verify the Rally Bar is set as the default audio device in Windows Sound settings. Check mute state on the physical hub unit.</li>
+                  <li><strong>Display shows &ldquo;No signal&rdquo;</strong> &mdash; confirm HDMI input selection on the room display. Test with a direct laptop connection to isolate whether the issue is the switcher or the cable.</li>
+                  <li><strong>Teams Rooms console frozen / black screen</strong> &mdash; hold power on the compute unit for 10 s. For Logitech TAP-based rooms, reboot via the Logitech Sync portal to avoid a physical site visit.</li>
+                  <li><strong>Firmware update loop</strong> &mdash; do not interrupt an active firmware cycle. If stuck, factory reset from the admin menu and re-pair to the room account via Logitech Sync.</li>
+                </ol>
+                <p class="kb-note"><strong>Escalate if:</strong> hardware fault confirmed (physical damage, burnt smell) &mdash; log as hardware replacement in ServiceNow and attach photo evidence.</p>
+              </div>
+
+              <h3>Part 2 &mdash; Laptop Imaging &amp; Refresh</h3>
+
+              <h3>Pre-imaging Checklist</h3>
+              <div class="kb-step">
+                <ol>
+                  <li>Verify device is in the asset tracker &mdash; confirm serial number matches the ServiceNow CI record.</li>
+                  <li>Wipe existing data: boot to WinPE and run secure erase. For BitLocker-encrypted drives, confirm the recovery key has been escrowed before wiping.</li>
+                  <li>Check BIOS: Secure Boot enabled, TPM 2.0 active, boot order set to network first for PXE.</li>
+                </ol>
+              </div>
+
+              <h3>Imaging</h3>
+              <div class="kb-step">
+                <ol>
+                  <li>Boot to PXE or USB imaging stick and select the correct image for the device model and region (EMEA standard image).</li>
+                  <li>Let imaging complete without interruption &mdash; typical time: 20&ndash;40 min depending on drive speed.</li>
+                  <li>On first boot: join domain, apply GPO, confirm Windows Update resolves to current patch level.</li>
+                </ol>
+              </div>
+
+              <h3>Post-imaging Checklist</h3>
+              <ul class="kb-checklist">
+                <li>Asset tag confirmed in ServiceNow CI record</li>
+                <li>Device joined to domain and in correct OU</li>
+                <li>User account logs in successfully, MFA enrolled</li>
+                <li>Core apps present: Teams, Outlook, Chrome, VPN client</li>
+                <li>BitLocker enabled and recovery key escrowed</li>
+                <li>Ticket updated with imaging date and build version</li>
+              </ul>
+
+            </div>
+          </details>
+        </div>
+
       </div><!-- /portfolio-wrap -->
     </div>
   </section>
@@ -585,7 +751,7 @@ for ($i = 0; $i -lt $users.Count; $i++) {
       <span class="eyebrow centered">Get in touch</span>
       <h2 class="section-title centered">Let's connect</h2>
       <p class="section-sub centered">
-        I'm open to new opportunities in technical support and escalations. Feel free to reach out.
+        I&rsquo;m open to IT support roles across desktop, field, and application tiers. Feel free to reach out.
       </p>
       <div class="contact-links">
         <a href="mailto:yelenakarp@gmail.com" class="contact-link">

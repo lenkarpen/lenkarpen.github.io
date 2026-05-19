@@ -764,6 +764,99 @@ img { display: block; max-width: 100%; }
 .contact-icon { font-size: 1.1rem; }
 
 /* ═══════════════════════════════════════════
+   CASE STUDY (featured project card)
+═══════════════════════════════════════════ */
+.project-card-featured {
+  border-top-width: 6px;
+  border-top-color: var(--p700);
+  background: linear-gradient(180deg, var(--p50) 0%, var(--white) 220px);
+}
+.project-card-featured .project-title {
+  font-size: 1.85rem;
+  margin-top: 0.25rem;
+}
+.project-tagline {
+  color: var(--z700);
+  font-size: 1rem;
+  margin-top: 0.6rem;
+  max-width: 640px;
+  line-height: 1.55;
+}
+
+.case-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  background: var(--white);
+  border: 1px solid var(--p200);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0 1.75rem;
+}
+.case-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+.case-stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--p800);
+  line-height: 1.1;
+}
+.case-stat-label {
+  font-size: 0.78rem;
+  color: var(--z500);
+  letter-spacing: 0.01em;
+}
+
+.case-steps {
+  margin: 0.5rem 0 1.25rem 1.5rem;
+  padding: 0;
+  list-style: decimal;
+  color: var(--z700);
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+.case-steps li { margin-bottom: 0.55rem; }
+.case-steps strong { color: var(--p800); }
+
+.case-outcomes { margin-top: 1.5rem; }
+.case-section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  color: var(--p800);
+  margin-bottom: 0.6rem;
+}
+.case-outcomes ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  color: var(--z700);
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+.case-outcomes li { margin-bottom: 0.4rem; }
+
+.case-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--p200);
+  font-size: 0.88rem;
+  color: var(--z500);
+}
+.case-footer a {
+  color: var(--p700);
+  font-weight: 600;
+  border-bottom: 1px dashed var(--p300);
+}
+.case-footer a:hover {
+  color: var(--p800);
+  border-bottom-style: solid;
+}
+
+/* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
 .footer {
@@ -794,6 +887,7 @@ img { display: block; max-width: 100%; }
   .cert-featured { grid-template-columns: 1fr; gap: 2rem; }
 
   .project-header { flex-direction: column; }
+  .case-stats { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
@@ -803,4 +897,6 @@ img { display: block; max-width: 100%; }
   .nav-links   { display: none; }
   .hero-name   { font-size: 3rem; }
   .contact-link { min-width: unset; width: 100%; }
+  .case-stats { grid-template-columns: 1fr; }
+  .project-card-featured .project-title { font-size: 1.45rem; }
 }

@@ -1,4 +1,21 @@
+# system
 .DS_Store
+
+# CV / cover letter sources (personal data)
 build_cv.py
+build_cv_escalation.py
+build_cover_letter_*.py
+
+# CV / cover letter outputs (personal data)
 Olena_Karpenko_CV.docx
+Olena_Karpenko_CV.pdf
+Olena_Karpenko_CV_Technical.docx
+Olena_Karpenko_Cover_Letter_*.docx
+Olena_Karpenko_Cover_Letter_*.pdf
+Cover Letter - *.md
+
+# certs (originals — already linked via CDN on the site)
 Azure Fundamentals.pdf
+
+# screenshots / misc
+Screenshot *.png
