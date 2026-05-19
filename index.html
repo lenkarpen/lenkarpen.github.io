@@ -798,6 +798,15 @@ for ($i = 0; $i -lt $users.Count; $i++) {
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
+
+    // Re-jump to hash after all images/fonts have loaded so the anchor
+    // doesn't end up mis-positioned by late layout shifts.
+    window.addEventListener('load', () => {
+      if (location.hash) {
+        const el = document.querySelector(location.hash);
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    });
   </script>
 
 </body>

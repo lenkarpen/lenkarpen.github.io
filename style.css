@@ -34,7 +34,7 @@
   --shadow-lg: 0 4px 16px rgba(0,0,0,0.08), 0 16px 48px rgba(98,100,167,0.13);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
