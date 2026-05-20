@@ -162,9 +162,9 @@
           <h3 class="skill-category">Field &amp; Hardware Support</h3>
           <div class="tags">
             <span class="tag">Laptop Imaging &amp; Refresh</span>
+            <span class="tag">Laptop Decommissioning</span>
             <span class="tag">Asset Management</span>
-            <span class="tag">Logitech AV</span>
-            <span class="tag">AV Setup &amp; Maintenance</span>
+            <span class="tag">BitLocker</span>
             <span class="tag">Hardware Troubleshooting</span>
             <span class="tag">Technical Escalations</span>
             <span class="tag">Root Cause Analysis</span>
@@ -418,89 +418,27 @@
             </ul>
           </div>
 
-          <p class="case-footer">
-            <strong>Components below:</strong>
-            <a href="#proj-powershell">PowerShell Provisioning</a>
-            &nbsp;&middot;&nbsp;
-            <a href="#proj-kb-vdi">VDI Onboarding KB</a>
-          </p>
         </div>
 
-        <!-- ── Project 2: PowerShell AD Provisioning ── -->
-        <div class="project-card" id="proj-powershell">
-          <div class="project-header">
-            <div>
-              <span class="project-type project-type-infra">PowerShell &middot; Active Directory</span>
-              <h3 class="project-title">AD Group Bulk Provisioning</h3>
-            </div>
-            <div class="tags">
-              <span class="tag">PowerShell</span>
-              <span class="tag">Active Directory</span>
-              <span class="tag">Automation</span>
-              <span class="tag">VDI Onboarding</span>
-            </div>
-          </div>
-
-          <p class="project-problem">
-            <strong>Problem:</strong> During VDI onboarding, each new hire must be added to an AD security group that corresponds to their desktop pool. Processing batches of 10&ndash;30 users per week manually is repetitive, slow, and a source of provisioning errors if order is mismatched.
-          </p>
-          <p class="project-solution">
-            <strong>Solution:</strong> A PowerShell script that takes paired lists of users and groups, validates that the counts match before executing, and runs bulk <code style="background:#EBEBF8;color:#464775;padding:0.1em 0.35em;border-radius:4px;font-size:0.9em;">Add-ADGroupMember</code> calls with per-entry success and failure output. Used as a standard step in the weekly onboarding run.
-          </p>
-
-          <details class="code-block">
-            <summary>View source</summary>
-<pre><code class="language-powershell">Import-Module ActiveDirectory
-
-# Paired lists — order must match: User 1 -> Group 1, User 2 -> Group 2
-$users = @(
-    "user1",
-    "user2",
-    "user3"
-)
-
-$groups = @(
-    "SG-VDI-POOL-EMEA-01",
-    "SG-VDI-POOL-EMEA-01",
-    "SG-VDI-POOL-US-02"
-)
-
-if ($users.Count -ne $groups.Count) {
-    Write-Host "ERROR: User count ($($users.Count)) does not match group count ($($groups.Count))." `
-               -ForegroundColor Red
-    exit
-}
-
-for ($i = 0; $i -lt $users.Count; $i++) {
-    try {
-        Add-ADGroupMember -Identity $groups[$i] -Members $users[$i]
-        Write-Host "Added  '$($users[$i])'  ->  '$($groups[$i])'" -ForegroundColor Green
-    } catch {
-        Write-Host "FAILED '$($users[$i])'  ->  '$($groups[$i])': $_" -ForegroundColor Red
-    }
-}
-</code></pre>
-          </details>
-        </div>
-
-        <!-- ── Project 3: KB Article ── -->
-        <div class="project-card" id="proj-kb-vdi">
+        <!-- ── Project 2: Hardware KB — Laptop Refresh & Decommissioning ── -->
+        <div class="project-card" id="proj-kb-hardware">
           <div class="project-header">
             <div>
               <span class="project-type project-type-docs">Technical Writing &middot; KB Article</span>
-              <h3 class="project-title">VDI Onboarding: End-to-End Provisioning Guide</h3>
+              <h3 class="project-title">Laptop Lifecycle: Refresh &amp; Decommissioning</h3>
             </div>
             <div class="tags">
               <span class="tag">Technical Writing</span>
-              <span class="tag">VDI</span>
-              <span class="tag">Active Directory</span>
-              <span class="tag">Omnissa Horizon</span>
+              <span class="tag">Hardware</span>
+              <span class="tag">Asset Management</span>
+              <span class="tag">BitLocker</span>
+              <span class="tag">NIST 800-88</span>
               <span class="tag">ServiceNow</span>
             </div>
           </div>
 
           <p class="project-problem">
-            <strong>Context:</strong> Internal knowledge base article written to standardise the VDI new-hire onboarding workflow across the IT Support team. Covers the full lifecycle: ITSM ticket export, identity management lookup, AD group provisioning, and onboarding portal verification. Authored on Confluence; reproduced here in simplified form.
+            <strong>Context:</strong> Internal knowledge base article covering both ends of the corporate laptop lifecycle &mdash; fresh imaging when a device is deployed or refreshed, and secure decommissioning when a device leaves the fleet. Written for IT Support Specialists handling on-site requests. Authored on Confluence; reproduced here in simplified form.
           </p>
 
           <details class="code-block kb-article-block">
@@ -509,124 +447,31 @@ for ($i = 0; $i -lt $users.Count; $i++) {
 
               <div class="kb-meta">
                 <span>Author: Olena Karpenko</span>
-                <span>Last updated: April 2026</span>
-                <span>Category: VDI &middot; Onboarding &middot; Active Directory</span>
+                <span>Last updated: May 2026</span>
+                <span>Category: Hardware &middot; Asset Lifecycle &middot; Imaging</span>
               </div>
 
               <h3>Overview</h3>
               <p>
-                This article documents the end-to-end process for provisioning VDI desktop pool access for new hires. It is intended for IT Support Specialists responsible for processing onboarding requests received via the ITSM queue. Follow steps in order; do not proceed to Step&nbsp;3 until Step&nbsp;2 is fully verified.
+                This article documents the full corporate-laptop lifecycle from the IT Support perspective: deploying a freshly imaged device to a user, and securely retiring a device when it leaves the fleet. The two workflows share the same asset-management discipline &mdash; every state change must be reflected in the ServiceNow CI record.
               </p>
 
               <h3>Prerequisites</h3>
               <ul>
-                <li>Access to the ITSM platform (ticket queue and reports)</li>
-                <li>Access to the Identity Management Portal</li>
-                <li>Active Directory administrative rights (AD Module for Windows PowerShell)</li>
-                <li>Read access to Omnissa Horizon Admin Console</li>
-                <li>Access to the Onboarding Portal (CSV upload)</li>
-                <li>Edit access to the shared onboarding tracker</li>
+                <li>Access to ServiceNow asset records and the CI database</li>
+                <li>PXE boot server or USB imaging stick with the current standard image</li>
+                <li>WinPE recovery environment for secure erase</li>
+                <li>BitLocker recovery-key access via the central key escrow</li>
+                <li>Documented asset disposal route for your region (vendor return / e-waste / refurbish)</li>
               </ul>
 
-              <h3>Step 1 &mdash; Tracker Update</h3>
-              <div class="kb-step">
-                <ol>
-                  <li>Export new-hire tickets from the ITSM report. The report is pre-filtered to show only tickets <em>not yet</em> marked as processed, preventing duplicate entries.</li>
-                  <li>Paste the exported ticket content into the <strong>ITSM Import</strong> tab of the onboarding rough tracker.</li>
-                  <li>Open the Identity Management Portal and navigate to the <strong>New Hire Password</strong> tab. Set the date picker to <em>start date + 1 day</em>, then paste the user list into the <strong>Identity Sheet</strong> in the rough tracker.</li>
-                  <li>Copy the contents of the <strong>Print New</strong> sheet and paste as <em>Values Only</em> into the actual tracker to preserve formatting.</li>
-                  <li>Return to the ITSM report and append <code>– added to tracker</code> to each processed ticket's short description. This prevents the ticket from reappearing on subsequent exports.</li>
-                </ol>
-                <p class="kb-note"><strong>Note:</strong> The report filter relies on the absence of the suffix above. Always update ticket descriptions before closing the ITSM tab.</p>
-              </div>
-
-              <h3>Step 2 &mdash; AD Pool Provisioning</h3>
-              <div class="kb-step">
-                <ol>
-                  <li>For each user, look up the corresponding AD security group using the Group Lookup Tool. If the group is not found (this occurs when the value is a pool name rather than a group name), search the correct pool in the <strong>Omnissa Horizon Admin Console</strong> by region.</li>
-                  <li>Use the provisioning script template (see <em>AD Group Bulk Provisioning</em> above) to populate the user and group arrays. Verify order carefully &mdash; User 1 must map to Group 1.</li>
-                  <li>Paste the completed script into <strong>Active Directory Module for Windows PowerShell</strong> and execute. Review the per-line output before proceeding; any red failure lines must be resolved before Step&nbsp;3.</li>
-                </ol>
-                <p class="kb-note"><strong>Troubleshooting:</strong> <em>"Object not found"</em> on a user &mdash; verify spelling against the Identity Portal. <em>"Group not found"</em> &mdash; re-confirm the pool in Horizon Admin Console and check the region.</p>
-              </div>
-
-              <h3>Step 3 &mdash; Onboarding Portal Upload</h3>
-              <div class="kb-step">
-                <ol>
-                  <li><strong>Rehires first</strong> &mdash; check the Identity Management Portal for returning employees and process them before new hires.</li>
-                  <li>Only upload users who have been successfully added to an AD group. If a pool name is missing from the tracker, confirm with the user's manager or account team before uploading.</li>
-                  <li>Copy columns <strong>H through K</strong> from the tracker and paste into <code>sample.csv</code>, keeping headers intact.</li>
-                  <li>Upload the CSV to the Onboarding Portal with the <strong>VDI Hire</strong> checkbox selected.</li>
-                  <li>Verify that the <strong>Collected LDAP</strong> status is <span style="color:#15803d;font-weight:600;">green</span> for every user before closing the portal.</li>
-                  <li>Enter the upload date in the <strong>Upload Date</strong> column of the tracker to mark the batch as complete.</li>
-                </ol>
-              </div>
-
-              <h3>Verification Checklist</h3>
-              <ul class="kb-checklist">
-                <li>All ITSM tickets appended with <code>– added to tracker</code></li>
-                <li>Tracker fully populated &mdash; no blank pool names</li>
-                <li>PowerShell output shows no failures</li>
-                <li>Onboarding Portal shows green LDAP status for all users</li>
-                <li>Tracker upload date column updated for the batch</li>
-              </ul>
-
-            </div>
-          </details>
-        </div>
-
-        <!-- ── Project 4: AV & Field Support ── -->
-        <div class="project-card">
-          <div class="project-header">
-            <div>
-              <span class="project-type project-type-docs">Field Support &middot; AV</span>
-              <h3 class="project-title">Meeting Room AV &amp; Laptop Refresh Guide</h3>
-            </div>
-            <div class="tags">
-              <span class="tag">Logitech AV</span>
-              <span class="tag">Laptop Imaging</span>
-              <span class="tag">Asset Management</span>
-              <span class="tag">Hardware Troubleshooting</span>
-              <span class="tag">ServiceNow</span>
-            </div>
-          </div>
-
-          <p class="project-problem">
-            <strong>Context:</strong> Field support documentation covering two high-frequency on-site tasks: meeting room AV troubleshooting (Logitech Rally / MS Teams Rooms setups) and the laptop imaging and refresh workflow used when deploying or recycling devices for end users.
-          </p>
-
-          <details class="code-block kb-article-block">
-            <summary>Read article</summary>
-            <div class="kb-article">
-
-              <div class="kb-meta">
-                <span>Author: Olena Karpenko</span>
-                <span>Last updated: 2025</span>
-                <span>Category: Field Support &middot; AV &middot; Hardware</span>
-              </div>
-
-              <h3>Part 1 &mdash; Meeting Room AV Troubleshooting</h3>
-              <p>Covers Logitech Rally Bar setups connected via MS Teams Rooms in the Dublin office.</p>
-
-              <h3>Common Issues &amp; Resolutions</h3>
-              <div class="kb-step">
-                <ol>
-                  <li><strong>Camera not detected in Teams</strong> &mdash; unplug and replug USB-C hub, wait 15 s for device re-enumeration. If it persists, restart the Teams Rooms console from the admin panel.</li>
-                  <li><strong>No audio / mic not picking up</strong> &mdash; verify the Rally Bar is set as the default audio device in Windows Sound settings. Check mute state on the physical hub unit.</li>
-                  <li><strong>Display shows &ldquo;No signal&rdquo;</strong> &mdash; confirm HDMI input selection on the room display. Test with a direct laptop connection to isolate whether the issue is the switcher or the cable.</li>
-                  <li><strong>Teams Rooms console frozen / black screen</strong> &mdash; hold power on the compute unit for 10 s. For Logitech TAP-based rooms, reboot via the Logitech Sync portal to avoid a physical site visit.</li>
-                  <li><strong>Firmware update loop</strong> &mdash; do not interrupt an active firmware cycle. If stuck, factory reset from the admin menu and re-pair to the room account via Logitech Sync.</li>
-                </ol>
-                <p class="kb-note"><strong>Escalate if:</strong> hardware fault confirmed (physical damage, burnt smell) &mdash; log as hardware replacement in ServiceNow and attach photo evidence.</p>
-              </div>
-
-              <h3>Part 2 &mdash; Laptop Imaging &amp; Refresh</h3>
+              <h3>Part 1 &mdash; Refresh</h3>
 
               <h3>Pre-imaging Checklist</h3>
               <div class="kb-step">
                 <ol>
-                  <li>Verify device is in the asset tracker &mdash; confirm serial number matches the ServiceNow CI record.</li>
-                  <li>Wipe existing data: boot to WinPE and run secure erase. For BitLocker-encrypted drives, confirm the recovery key has been escrowed before wiping.</li>
+                  <li>Verify the device exists in the asset tracker &mdash; serial number must match the ServiceNow CI record.</li>
+                  <li>Wipe existing data: boot to WinPE and run secure erase. For BitLocker-encrypted drives, confirm the recovery key has been escrowed <em>before</em> wiping.</li>
                   <li>Check BIOS: Secure Boot enabled, TPM 2.0 active, boot order set to network first for PXE.</li>
                 </ol>
               </div>
@@ -634,21 +479,88 @@ for ($i = 0; $i -lt $users.Count; $i++) {
               <h3>Imaging</h3>
               <div class="kb-step">
                 <ol>
-                  <li>Boot to PXE or USB imaging stick and select the correct image for the device model and region (EMEA standard image).</li>
-                  <li>Let imaging complete without interruption &mdash; typical time: 20&ndash;40 min depending on drive speed.</li>
-                  <li>On first boot: join domain, apply GPO, confirm Windows Update resolves to current patch level.</li>
+                  <li>Boot to PXE or USB imaging stick and select the correct image for the device model and region (e.g.&nbsp;EMEA standard image).</li>
+                  <li>Let imaging complete without interruption &mdash; typical time 20&ndash;40 min depending on drive speed.</li>
+                  <li>On first boot: join domain, apply GPO, confirm Windows Update resolves to the current patch level.</li>
                 </ol>
               </div>
 
               <h3>Post-imaging Checklist</h3>
               <ul class="kb-checklist">
-                <li>Asset tag confirmed in ServiceNow CI record</li>
+                <li>Asset tag confirmed in the ServiceNow CI record</li>
                 <li>Device joined to domain and in correct OU</li>
                 <li>User account logs in successfully, MFA enrolled</li>
                 <li>Core apps present: Teams, Outlook, Chrome, VPN client</li>
                 <li>BitLocker enabled and recovery key escrowed</li>
                 <li>Ticket updated with imaging date and build version</li>
               </ul>
+
+              <h3>Part 2 &mdash; Decommissioning</h3>
+
+              <h3>Pre-decommission Checklist</h3>
+              <div class="kb-step">
+                <ol>
+                  <li>Confirm the decommission request in ServiceNow &mdash; verify the requester is an authorised manager or HR contact.</li>
+                  <li>Coordinate with the user on device collection and confirm whether any local data needs to be migrated.</li>
+                  <li>Validate that the asset record matches the physical device &mdash; serial number, model, and current owner.</li>
+                  <li>Note any peripherals returned with the device (docks, monitors, adapters); record separately as they have their own lifecycle.</li>
+                </ol>
+              </div>
+
+              <h3>Data Destruction</h3>
+              <div class="kb-step">
+                <ol>
+                  <li>Boot to WinPE; pull and escrow the BitLocker recovery key if not already on file.</li>
+                  <li>Run a NIST 800-88 compliant secure erase (single-pass cryptographic erase for SSDs; multi-pass overwrite for legacy HDDs going to e-waste).</li>
+                  <li>Verify post-wipe with a test boot &mdash; the drive should fail to boot, confirming the operating system is gone.</li>
+                  <li>Capture the wipe-completion screen as evidence and attach it to the decommission ticket.</li>
+                </ol>
+                <p class="kb-note"><strong>Critical:</strong> Never wipe a BitLocker-encrypted drive whose recovery key has not been escrowed. Doing so destroys any possibility of recovering data if it turns out to be needed for legal hold or user request.</p>
+              </div>
+
+              <h3>Hardware Inspection</h3>
+              <div class="kb-step">
+                <ol>
+                  <li>Visual check &mdash; screen, keyboard, ports, hinges, chassis.</li>
+                  <li>Functional check &mdash; power, charging, USB ports, webcam, speakers.</li>
+                  <li>Categorise outcome:
+                    <ul>
+                      <li><strong>Refurbish-ready</strong> &mdash; good condition, can re-enter the fleet</li>
+                      <li><strong>Vendor return</strong> &mdash; out-of-warranty resale or leasing return</li>
+                      <li><strong>E-waste</strong> &mdash; irreparable damage; route to certified disposal</li>
+                    </ul>
+                  </li>
+                </ol>
+              </div>
+
+              <h3>Asset Retirement</h3>
+              <div class="kb-step">
+                <ol>
+                  <li>Update the ServiceNow CI status to <strong>Retired</strong> or <strong>Disposed</strong>.</li>
+                  <li>Detach the device from the current owner; archive the assignment history.</li>
+                  <li>Log the disposal route taken and any vendor / e-waste reference number.</li>
+                  <li>If the device leaves the premises, capture handover signature or shipping label number on the ticket.</li>
+                </ol>
+              </div>
+
+              <h3>Verification Checklist</h3>
+              <ul class="kb-checklist">
+                <li>BitLocker recovery key escrowed and matched to the serial number</li>
+                <li>Wipe-completion evidence attached to the ticket</li>
+                <li>ServiceNow CI status updated to retired / disposed</li>
+                <li>Owner detached and assignment history archived</li>
+                <li>Disposal route documented with reference number</li>
+                <li>Peripherals processed separately or returned to inventory</li>
+              </ul>
+
+              <h3>Troubleshooting</h3>
+              <div class="kb-step">
+                <ul>
+                  <li><strong>BitLocker key not escrowed</strong> &mdash; do not wipe. Escalate via the recovery-key team; wiping an unescrowed device loses any chance of data recovery.</li>
+                  <li><strong>Serial mismatch with CI record</strong> &mdash; investigate before proceeding. The device may have been swapped without record update; correct the CI first.</li>
+                  <li><strong>Wipe hangs indefinitely</strong> &mdash; common on failing drives. Note the drive serial separately for vendor RMA and use a physical destruction route (shredder / degausser) instead of software erase.</li>
+                </ul>
+              </div>
 
             </div>
           </details>
