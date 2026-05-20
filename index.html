@@ -420,97 +420,10 @@
 
           <p class="case-footer">
             <strong>Components below:</strong>
-            <a href="#proj-parser">Ticket Parser</a>
-            &nbsp;&middot;&nbsp;
             <a href="#proj-powershell">PowerShell Provisioning</a>
             &nbsp;&middot;&nbsp;
             <a href="#proj-kb-vdi">VDI Onboarding KB</a>
           </p>
-        </div>
-
-        <!-- ── Project 1: Python Parser ── -->
-        <div class="project-card" id="proj-parser">
-          <div class="project-header">
-            <div>
-              <span class="project-type project-type-code">Python &middot; Automation</span>
-              <h3 class="project-title">ServiceNow Ticket Parser</h3>
-            </div>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">BeautifulSoup</span>
-              <span class="tag">ServiceNow</span>
-              <span class="tag">Active Directory</span>
-              <a href="https://github.com/lenkarpen/servicenow-ticket-parser" target="_blank" rel="noopener" class="tag" style="color:var(--p700);border-color:var(--p300);">View on GitHub ↗</a>
-            </div>
-          </div>
-
-          <p class="project-problem">
-            <strong>Problem:</strong> ServiceNow ticket exports store ~10 fields per worker &mdash; legal name, manager, region, VDI pool, start date, rehire flag, contact email &mdash; inside a single HTML-formatted cell. Manual extraction across daily batches was slow and error-prone.
-          </p>
-          <p class="project-solution">
-            <strong>Solution:</strong> The parser stage of the onboarding pipeline. BeautifulSoup strips the HTML, a single regex table maps friendly field names to their patterns, and one normaliser handles preferred-name variants and middle initials so the parsed records join cleanly against the identity-management export downstream.
-          </p>
-
-          <details class="code-block">
-            <summary>View source <span class="summary-hint">(snow_parser.py &mdash; Stage 1)</span></summary>
-<pre><code class="language-python">FIELD_PATTERNS = {
-    "first_name":    r"(legal[\s_-]?first[\s_-]?name|first[\s_-]?name)",
-    "last_name":     r"(legal[\s_-]?last[\s_-]?name|last[\s_-]?name)",
-    "manager":       r"(people[\s_-]?manager|manager[\s_-]?name|manager)",
-    "region":        r"(geographic[\s_-]?region|region)",
-    "pool_name":     r"(pool[\s_-]?name|vdi[\s_-]?profile)",
-    "start_date":    r"(request[\s_-]?start[\s_-]?date|start[\s_-]?date)",
-    "rehire":        r"(ever[\s_-]?worked|previous[\s_-]?employee|rehire)",
-    "contact_email": r"(personal[\s_-]?email|contact[\s_-]?email)",
-}
-
-
-def parse_ticket_html(raw: str) -> dict:
-    """Extract structured fields from one ticket's HTML metadata cell."""
-    record = {k: None for k in FIELD_PATTERNS}
-    if not raw or isinstance(raw, float):
-        return record
-
-    text = BeautifulSoup(str(raw), "html.parser").get_text(separator="\n")
-
-    for line in text.splitlines():
-        line = line.strip()
-        if not line or ":" not in line:
-            continue
-        for field, pattern in FIELD_PATTERNS.items():
-            if record[field] is None and re.search(pattern, line, re.I):
-                m = re.search(r":\s*(.+)", line)
-                if m:
-                    record[field] = m.group(1).strip()
-                break
-
-    if record["first_name"] and record["last_name"]:
-        record["full_name"] = f"{record['first_name']} {record['last_name']}"
-
-    if isinstance(record["rehire"], str):
-        record["rehire"] = record["rehire"].lower().startswith(("yes", "true", "y"))
-
-    return record
-
-
-def normalise_name(name: str) -> str:
-    """'John A. Smith' and 'john   smith' both -> 'john smith'."""
-    if not name:
-        return ""
-    name = re.sub(r"\s+\w\.\s+", " ", name)
-    return re.sub(r"\s+", " ", name.strip().lower())
-
-
-def attach_usernames(tickets, identity):
-    """Join parsed tickets to the identity-management export on normalised name."""
-    tickets["_key"] = tickets["full_name"].apply(normalise_name)
-    identity["_key"] = identity["full_name"].apply(normalise_name)
-    return tickets.merge(
-        identity[["_key", "username"]], on="_key", how="left"
-    ).drop(columns="_key")
-</code></pre>
-          </details>
         </div>
 
         <!-- ── Project 2: PowerShell AD Provisioning ── -->
