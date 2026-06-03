@@ -1,0 +1,23 @@
+Last year I inherited a process I now genuinely enjoy: a daily reconciliation across three systems to onboard contractor VDI access. ~250 workers a month, up to 2 hours of Excel work every day, and occasional missed group assignments downstream.
+
+So I rebuilt it end-to-end.
+
+1️⃣ Python parser extracts ~10 fields per worker from each ticket's HTML metadata cell — name, manager, region, access pool, start date, rehire flag, contact email — using BeautifulSoup + regex.
+
+2️⃣ Cross-reference against an identity-management export to attach assigned usernames, with name normalisation handling casing, middle initials, and preferred-name variants.
+
+3️⃣ Anomaly detection against a rolling 12-month history: if a (pool, region) combination has been used in the past 6 months, the right security group is auto-populated; if not, the row is flagged for manual review — most likely a new pool, or one that's been retired.
+
+4️⃣ PowerShell + ActiveDirectory module bulk-adds users to their security groups and verifies membership, surfacing mismatches before they reach the analyst queue.
+
+Result: daily processing dropped from ~2 hours to under 10 minutes. Group-assignment errors caught at the source, not by a downstream ticket. The pipeline is now run by a teammate following the SOP I wrote — so the automation belongs to the team, not just to me.
+
+Stack: Python (pandas, BeautifulSoup), PowerShell + ActiveDirectory module, CSV interfaces.
+
+Two lessons I'd keep:
+– Anomaly detection from your own historical data is wildly underrated.
+– The best automation isn't the one only you can run.
+
+Full case study: lenkarpen.github.io
+
+#Python #PowerShell #Automation #ITOps
